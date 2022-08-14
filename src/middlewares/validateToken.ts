@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { unauthorizedError } from "../utils/errorUtils";
+import { unauthorizedError } from "../utils/errorUtils.js";
 
 export default function validateToken(
   req: Request,
@@ -17,13 +17,12 @@ export default function validateToken(
     throw unauthorizedError("Wrong jwt format");
   }
 
-  const id = jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded: any) => {
     if (err) {
       throw unauthorizedError("Invalid jwt");
     }
-    return decoded;
+    req.body.userId = decoded.id;
   });
-  req.body.id = id;
 
   next();
 }
