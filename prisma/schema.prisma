@@ -20,6 +20,7 @@ model Users {
   EstablishmentsAddresses EstablishmentsAddresses[]
   Deliverers              Deliverers[]
   Customers               Customers[]
+  Orders                  Orders[]
 }
 
 model EstablishmentsAddresses {
@@ -41,6 +42,7 @@ model Deliverers {
   user      Users    @relation(fields: [userId], references: [id])
   userId    Int
   available Boolean  @default(true)
+  Orders    Orders[]
 }
 
 model Customers {
@@ -53,6 +55,7 @@ model Customers {
   user            Users                @relation(fields: [userId], references: [id])
   userId          Int
   CustomersAdress CustomersAddresses[]
+  Orders          Orders[]
 }
 
 model CustomersAddresses {
@@ -62,4 +65,19 @@ model CustomersAddresses {
   updatedAt  DateTime  @updatedAt
   customer   Customers @relation(fields: [customerId], references: [id])
   customerId Int
+}
+
+model Orders {
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  customer    Customers  @relation(fields: [customerId], references: [id])
+  customerId  Int
+  Deliverer   Deliverers @relation(fields: [delivererId], references: [id])
+  delivererId Int
+  Users       Users      @relation(fields: [userId], references: [id])
+  userId      Int
+  done        Boolean    @default(false)
+  description String
+  total       Float      @default(0)
 }
