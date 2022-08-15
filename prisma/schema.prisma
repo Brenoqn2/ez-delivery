@@ -19,6 +19,7 @@ model Users {
   updatedAt               DateTime                  @updatedAt
   EstablishmentsAddresses EstablishmentsAddresses[]
   Deliverers              Deliverers[]
+  Customers               Customers[]
 }
 
 model EstablishmentsAddresses {
@@ -40,4 +41,25 @@ model Deliverers {
   user      Users    @relation(fields: [userId], references: [id])
   userId    Int
   available Boolean  @default(true)
+}
+
+model Customers {
+  id              Int                  @id @default(autoincrement())
+  name            String
+  email           String               @unique
+  phone           String               @unique
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+  user            Users                @relation(fields: [userId], references: [id])
+  userId          Int
+  CustomersAdress CustomersAddresses[]
+}
+
+model CustomersAddresses {
+  id         Int       @id @default(autoincrement())
+  address    String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  customer   Customers @relation(fields: [customerId], references: [id])
+  customerId Int
 }
