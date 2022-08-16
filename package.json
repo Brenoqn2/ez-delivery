@@ -5,6 +5,8 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/src/server.js",
     "test": "dotenv -e .env.test prisma migrate dev && cross-env NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i",
     "test:unit": "dotenv -e .env.test prisma migrate dev && cross-env NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i --coverage --testPathPattern=tests/unit",
     "dev": "nodemon src/server.ts"
