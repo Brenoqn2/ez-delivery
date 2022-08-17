@@ -1,7 +1,8 @@
 import joi from "joi";
 
 const registerSchema = joi.object({
-  address: joi.string().required(),
+  lat: joi.string().required(),
+  lng: joi.string().required(),
 });
 
 const addressSchema = { registerSchema };

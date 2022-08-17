@@ -18,5 +18,15 @@ async function registerEstablishmentAddress(address: string, userId: number) {
   await addressRepository.registerEstablishmentAddress(address, userId);
 }
 
-const addressService = { registerEstablishmentAddress };
+async function getEstablishmentByUserId(userId: number) {
+  const establishment = await addressRepository.getEstablishmentByUserId(
+    userId
+  );
+  return establishment;
+}
+
+const addressService = {
+  registerEstablishmentAddress,
+  getEstablishmentByUserId,
+};
 export default addressService;

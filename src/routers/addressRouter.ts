@@ -11,5 +11,6 @@ addressRouter.post(
   validateToken,
   addressController.registerAddress
 );
+addressRouter.get("", validateToken, addressController.getAddress);
 
 export default addressRouter;
