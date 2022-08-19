@@ -7,5 +7,11 @@ async function register(req: Request, res: Response) {
   res.sendStatus(201);
 }
 
-const customersController = { register };
+async function getEstablishmentCustomers(req: Request, res: Response) {
+  const { userId } = req.body;
+  const customers = await customersService.getEstablishmentCustomers(userId);
+  res.send(customers);
+}
+
+const customersController = { register, getEstablishmentCustomers };
 export default customersController;

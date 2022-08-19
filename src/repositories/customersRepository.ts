@@ -32,5 +32,18 @@ async function getCustomerByPhone(phone: string) {
   return customer;
 }
 
-const customersRepository = { register, getCustomerByPhone };
+async function getEstablishmentCustomers(userId: number) {
+  const customers = await prisma.customers.findMany({
+    where: {
+      userId,
+    },
+  });
+  return customers;
+}
+
+const customersRepository = {
+  register,
+  getCustomerByPhone,
+  getEstablishmentCustomers,
+};
 export default customersRepository;

@@ -11,4 +11,9 @@ customersRouter.post(
   validateToken,
   customersController.register
 );
+customersRouter.get(
+  "",
+  validateToken,
+  customersController.getEstablishmentCustomers
+);
 export default customersRouter;

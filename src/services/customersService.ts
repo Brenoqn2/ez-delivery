@@ -16,5 +16,10 @@ async function register(
   await customersRepository.register(name, email, phone, address, userId);
 }
 
-const customersService = { register };
+async function getEstablishmentCustomers(userId: number) {
+  const customers = await customersRepository.getEstablishmentCustomers(userId);
+  return customers;
+}
+
+const customersService = { register, getEstablishmentCustomers };
 export default customersService;
