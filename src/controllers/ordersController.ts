@@ -8,7 +8,7 @@ async function register(req: Request, res: Response) {
     delivererId,
     userId,
     description,
-    total
+    parseFloat(total)
   );
 
   return res.send(order);

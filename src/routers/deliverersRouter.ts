@@ -11,5 +11,15 @@ deliverersRouter.post(
   validateToken,
   deliverersController.registerDeliverer
 );
+deliverersRouter.get(
+  "",
+  validateToken,
+  deliverersController.getAvailableDeliverers
+);
+deliverersRouter.put(
+  "",
+  validateToken,
+  deliverersController.setDelivererNotAvailable
+);
 
 export default deliverersRouter;

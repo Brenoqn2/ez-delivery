@@ -8,5 +8,21 @@ async function registerDeliverer(req: Request, res: Response) {
   res.sendStatus(201);
 }
 
-const deliverersController = { registerDeliverer };
+async function getAvailableDeliverers(req: Request, res: Response) {
+  const { userId } = req.body;
+  const deliverers = await deliverersService.getAvailableDeliverers(userId);
+  res.send(deliverers);
+}
+
+async function setDelivererNotAvailable(req: Request, res: Response) {
+  const { id } = req.body;
+  await deliverersService.setDelivererNotAvailable(id);
+  res.sendStatus(200);
+}
+
+const deliverersController = {
+  registerDeliverer,
+  getAvailableDeliverers,
+  setDelivererNotAvailable,
+};
 export default deliverersController;

@@ -29,5 +29,18 @@ async function registerDeliverer(deliverer: newDeliverer) {
   );
 }
 
-const deliverersService = { registerDeliverer };
+async function getAvailableDeliverers(userId: number) {
+  const deliverers = await deliverersRepository.getAvailableDeliverers(userId);
+  return deliverers;
+}
+
+async function setDelivererNotAvailable(id: number) {
+  await deliverersRepository.setDelivererNotAvailable(id);
+}
+
+const deliverersService = {
+  registerDeliverer,
+  getAvailableDeliverers,
+  setDelivererNotAvailable,
+};
 export default deliverersService;
