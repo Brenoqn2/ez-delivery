@@ -14,5 +14,11 @@ async function register(req: Request, res: Response) {
   return res.send(order);
 }
 
-const ordersController = { register };
+async function getEstablishmentOrders(req: Request, res: Response) {
+  const { userId } = req.body;
+  const orders = await ordersService.getEstablishmentOrders(userId);
+  return res.send(orders);
+}
+
+const ordersController = { register, getEstablishmentOrders };
 export default ordersController;

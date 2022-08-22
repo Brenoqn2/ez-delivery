@@ -21,5 +21,14 @@ async function getEstablishmentCustomers(userId: number) {
   return customers;
 }
 
-const customersService = { register, getEstablishmentCustomers };
+async function getCustomerAddresById(id: number) {
+  const customerAddress = await customersRepository.getCustomerAddresById(id);
+  return customerAddress;
+}
+
+const customersService = {
+  register,
+  getEstablishmentCustomers,
+  getCustomerAddresById,
+};
 export default customersService;

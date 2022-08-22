@@ -20,5 +20,16 @@ async function register(
   return order;
 }
 
-const ordersRepository = { register };
+async function getEstablishmentOrders(userId: number) {
+  const orders = await prisma.orders.findMany({
+    where: {
+      userId,
+      done: false,
+    },
+  });
+
+  return orders;
+}
+
+const ordersRepository = { register, getEstablishmentOrders };
 export default ordersRepository;

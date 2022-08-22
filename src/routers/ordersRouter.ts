@@ -11,5 +11,6 @@ ordersRouter.post(
   validateToken,
   ordersController.register
 );
+ordersRouter.get("", validateToken, ordersController.getEstablishmentOrders);
 
 export default ordersRouter;

@@ -16,4 +16,10 @@ customersRouter.get(
   validateToken,
   customersController.getEstablishmentCustomers
 );
+
+customersRouter.get(
+  "/:id",
+  validateToken,
+  customersController.getCustomerAddresById
+);
 export default customersRouter;

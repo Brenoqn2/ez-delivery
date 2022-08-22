@@ -13,5 +13,17 @@ async function getEstablishmentCustomers(req: Request, res: Response) {
   res.send(customers);
 }
 
-const customersController = { register, getEstablishmentCustomers };
+async function getCustomerAddresById(req: Request, res: Response) {
+  const { id } = req.params;
+  const customerAddress = await customersService.getCustomerAddresById(
+    Number(id)
+  );
+  res.send(customerAddress);
+}
+
+const customersController = {
+  register,
+  getEstablishmentCustomers,
+  getCustomerAddresById,
+};
 export default customersController;

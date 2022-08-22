@@ -18,5 +18,10 @@ async function register(
   return order;
 }
 
-const ordersService = { register };
+async function getEstablishmentOrders(userId: number) {
+  const orders = await ordersRepository.getEstablishmentOrders(userId);
+  return orders;
+}
+
+const ordersService = { register, getEstablishmentOrders };
 export default ordersService;

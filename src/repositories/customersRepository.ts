@@ -41,9 +41,19 @@ async function getEstablishmentCustomers(userId: number) {
   return customers;
 }
 
+async function getCustomerAddresById(id: number) {
+  const customerAddress = await prisma.customersAddresses.findUnique({
+    where: {
+      id,
+    },
+  });
+  return customerAddress;
+}
+
 const customersRepository = {
   register,
   getCustomerByPhone,
   getEstablishmentCustomers,
+  getCustomerAddresById,
 };
 export default customersRepository;
